@@ -9,6 +9,9 @@
   //   outline: 1px solid red;
   // }
 }
-.navTab_container {
-  width: 70% !important;
+.navTab_container-content {
+  width: 75% !important;
+  // width: fit-content !important;
+  // width: 80%;
+  margin: 0 auto;
 }

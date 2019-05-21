@@ -142,7 +142,10 @@ $fontGrey: #808080;
 $blue: #168cc9;
 $black: #333;
 
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 $monts: "Montserrat", sans-serif;
+
 .col-xs-12 {
   padding: 0;
   margin: 0;

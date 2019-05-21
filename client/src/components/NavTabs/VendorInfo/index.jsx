@@ -4,6 +4,11 @@ import './vendorInfo.scss';
 // Components
 import SideNavContents from './SideNavContents';
 
+// Icons
+import { Icon } from 'react-icons-kit';
+import {ic_close} from 'react-icons-kit/md/ic_close'
+
+
 
 const data = [
   { 
@@ -81,13 +86,13 @@ const data = [
       },
     ],
     "Return & Cancellation Policy": {
-      policy: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+      policy: " policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
     },
     "Promotion": {
-      promotion: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+      promotion: "promotio Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
     },
     "Size Info": {
-      "size info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+      "size info": "size Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
     }
   }
 
@@ -102,6 +107,14 @@ export default class VendorInfo extends Component {
       header: '',
       faqContents: [],
       child: [],
+      default: {
+        name: "",
+        description_1: "",
+        address: "",
+        phone: '',
+        email: '',
+        description_2: '',
+      }
     }
   }
   pushVendorInfo(info, infos) {
@@ -110,45 +123,50 @@ export default class VendorInfo extends Component {
         this.setState({
           selected: infos[key],
           header: info,
+          default: {
+            name: infos[key].name,
+            description_1: infos[key].description_1,
+            address: infos[key].address,
+            phone: infos[key].description_2,
+            email: infos[key].email,
+            description_2: infos[key].description_2
+          }
         })
       }
       if (key === "FAQ") {
         this.setState({faqContents: infos[key]})
         // return this.renderImmediateChild(key);
       }
+      if (key === "company info") {
+        console.log(infos[key], 'default')
+        // this.setState({default: {
+        //   name: i
+        // }})
+      }
     }
   }
-  // handleSelectedId(selected, depthLevel) {
-  //   return () => {
-  //     const updatedArray = this.state.child.slice(0);
-
-  //     updatedArray[depthLevel] = selected;
-
-  //     this.setState({
-  //       child: updatedArray,
-  //     })
-  //   }
-  // }
   renderVendorInfoNav(vendorInfo){   
-    return vendorInfo.map(infos => {
+    return vendorInfo.map(infos => {    
       return Object.keys(infos).map(info => {
-        // if (info === "FAQ") {
-          
-        // }
+        // console.log(infos.FAQ)
         return (
           <ul className="infoCategories" onClick={() => this.pushVendorInfo(info, infos)}>
             {info}
+            
           </ul>
         )
       })
     }) 
   }
   renderImmediateChild(faq) {
+    console.log(faq, 'fag')
     return faq.map(subHeaders => {
       return <li>{subHeaders.header}</li>
     })
   }
+  // renderSideNav() {
 
+  // }
   render() {
     return(
       <div id="vendorInfo" ref="referree">
@@ -157,7 +175,14 @@ export default class VendorInfo extends Component {
           {/* {this.renderImmediateChild(this.state.faqContents)} */}
         </div>
         <div className="sideNavContents">
-          <SideNavContents contents={this.state}/>
+          <div className="sideNavContainer">
+            <h3 className="sideNavHeader">{this.state.header }</h3>
+            <button>
+              <Icon icon={ic_close} size={16}/>
+            </button>
+          </div>
+          <SideNavContents contents={this.state  || this.state.default}/>
+          <button className="sideNavClose">Close</button>
         </div>
       </div>
     )

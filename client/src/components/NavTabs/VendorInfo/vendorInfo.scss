@@ -10,6 +10,7 @@
 }
 .sideNav {
   width: fit-content;
+  // width: fit-content;
 
 }
 .infoCategories {
@@ -19,6 +20,7 @@
   line-height: 1.5;
   white-space: nowrap;
   margin: 1em;
+  text-transform: capitalize;
 
   &:hover {
     color: $blue;
@@ -27,10 +29,55 @@
 
 .sideNavContents {
   width: 100%;
+  padding-left: 1em;
+  border-left: 2px solid $grey;
+}
+.sideNavContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 2px solid $grey;
 }
 .sideNavSchedule {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   width: fit-content;
+  grid-gap: .5em;
 }
+.sideNavHeader {
+  font-size: 12px;
+  font-weight: 800;
+  color: $fontGrey;
+  text-transform: capitalize;
+}
+.sideNavClose {
+  margin: 2em 1em 1em;
+  float: right;
+}
+
+// SideNav Components
+
+.navCompanyInfo, .sideNavSchedule, .navElse {
+  font-size: 12px;
+  color: $fontGrey;
+
+
+  .header {
+    color: $blue;
+    padding: 1em 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .description {
+    padding: 1em 0;
+  }
+  .details * {
+    margin: .5em 0;
+  }
+}
+// .sideNavSchedule {
+//   padding-right: .5em;
+// }
