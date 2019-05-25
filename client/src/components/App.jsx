@@ -13,6 +13,7 @@ import IndividualVendorAllItems from "./IndividualVendorLanding/IndividualVendor
 import ShoppingCart from "./ShoppingCart/index.jsx";
 import ShippingPayment from "./ShippingPayment/index.jsx";
 import Favorites from "./Favorites/index.jsx";
+import ItemDetails from './ItemDetails';
 
 import CompanyFooter from "./CompanyFooter/index.jsx";
 import CompanyHeader from "./CompanyHeader/index.jsx";
@@ -32,6 +33,9 @@ class App extends Component {
         <CompanyHeader/>
         <Navigation/>
         <NavTabs />
+        {/* <BuyerRegisteration/> */}
+        {/* <CategoryMain /> */}
+        {/* <ItemDetails /> */}
         <Switch>
           {routes.map(route => (
             <Route key={`route-${route.name}`} {...route} />

@@ -28,19 +28,18 @@
 }
 
 .sideNavContents {
-  width: 100%;
-  padding-left: 1em;
+  padding: 0 1em;
   border-left: 2px solid $grey;
 }
 .sideNavContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding-bottom: 5px;
   border-bottom: 2px solid $grey;
 }
 .sideNavSchedule {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
