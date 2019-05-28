@@ -16,7 +16,6 @@ class NavSubCategory extends Component {
   }
   renderSubCategories() {
     let category = this.pushSubCategories(this.props.subItems);
-    console.log(this.props.subItems, 'hi')
     return category.map(subCategory => {
       return (
         <ul onClick={()=> { this.props.history.push(`/category/${subCategory.parent}/${subCategory.name}`)}} className={"subCategory_name " + (subCategory.categories.length > 0  ? 'group' : 'single') }>

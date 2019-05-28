@@ -6,12 +6,11 @@ class SideNavContents extends Component {
   
   }
   renderContent(contents) {
-    console.log(contents)
     if (contents.header === "company info") {
       return this.companyInfo(contents.selected || contents.default)
     }
     else if (contents.header === 'FAQ') {
-      return this.faq(contents.faqContents)
+      return this.faq(contents)
     }
     else if (contents.header === 'Show Schedule') {
       return this.schedule(contents.selected);
@@ -19,57 +18,47 @@ class SideNavContents extends Component {
     else {
       return this.else(contents.selected);
     }
-    // if (contents.header === 'Return & Cancellation Policy') {
-    //   return this.cancellation(contents.selected);
-    // }
-    // if (contents.header === 'Promotion') {
-    //   return this.promotion(contents.selected);
-    // }
-    // if (contents.header === 'Size Info') {
-    //   return this.size(contents.selected);
-    // }
   }
   else (info) {
     for (let key in info) {
-      console.log('else', info[key])
       return (
-        <div className="navElse">
-          <p className="description">{info[key]}</p>
+        <div className="content__container">
+          <p className="content__description">{info[key]}</p>
         </div>
       )
     }
   }
   companyInfo(info) {
     return (
-      <div className="navCompanyInfo">
-        <h1 className="header">{info.name}</h1>
-        <p className="description">{info.description_1}</p>
-        <div className="details">
+      <div className="content__container">
+        <h1 className="content__header">{info.name}</h1>
+        <p className="content__description">{info.description_1}</p>
+        <div className="content__details">
           <p>{info.address}</p>
           <p>Tel: {info.phone}</p>
           <p>Fax: {info.phone}</p>
           <p>Email: {info.email}</p>
         </div>
-        <p className="description">{info.description_2}</p>
+        <p className="content__description">{info.description_2}</p>
       </div>
     )
   }
+ 
   faq(info) {
-    console.log(info)
     return (
-      <div>
-        fag
+      <div className="content__container">
+        <p className="content__description">{info.subHeaderContent}</p>
       </div>
     )
   }
   schedule(info) {
     return(
-      <ul className="sideNavSchedule">
-        {info.map(schedules => {
+      <ul className="content__container content__container-grid">
+        {info.map((schedules, i) => {
           return (
-            <li>
-              <h1 className="header">{schedules.name}</h1>
-              <div className="details">
+            <li key={i}>
+              <h1 className="content__header">{schedules.name}</h1>
+              <div className="content__details">
                 <p>Booth {schedules.booth}</p>
                 <p>{schedules.date}</p>
                 <p>{schedules.city}</p>
@@ -82,7 +71,7 @@ class SideNavContents extends Component {
   }
   render() {
     return(
-      <div>
+      <div className="tabInfo__content__subContainer">
         {this.renderContent(this.props.contents) || this.companyInfo(this.props.contents.default)}
       </div>
     )

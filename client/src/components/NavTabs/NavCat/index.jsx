@@ -4,7 +4,6 @@ import './tabCategory.scss';
 
 // components
 import NavCategory from '../../Navigation/NavCategory';
-import Checkbox from '../Checkboxes';
 
 // Icons
 import { Icon } from 'react-icons-kit';
@@ -117,37 +116,3 @@ export default class NavCat extends Component {
     )
   }
 };
-// {this.createCheckbox('young')}
-{/* <Checkboxes label={['One Size', 'S', 'L', '2xl', '4xl']}
-
-/> */}
-
-  // handleLabels(labels) {
-  //   // for (let i = 0; i < labels.length; i++) {
-  //     this.setState({ checkboxes: labels })
-  //     // console.log(labels[i]);
-  //   // }
-  // }
-  // handleCheckboxChange(changeEvent) {
-  //   const label = changeEvent.target;
-
-  //   this.setState(prevState => ({
-  //     checkboxes: {
-  //       ...prevState.checkboxes,
-  //       [label]: !prevState.checkboxes[label]
-  //     }
-  //   }))
-  // }
- 
-  // handleCheckbox(event) {
-  //   this.setState({ checked: event.target.checked })
-
-  // }
-  // createCheckbox(option) {
-  //   <Checkboxes 
-  //     label={option}
-  //     isSelected={this.state.checkboxes[option]}
-  //     onCheckboxChange={this.handleCheckboxChange}
-  //     key={option}
-  //     />
-  // }

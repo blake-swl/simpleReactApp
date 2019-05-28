@@ -7,6 +7,8 @@ import SideNavContents from './SideNavContents';
 // Icons
 import { Icon } from 'react-icons-kit';
 import {ic_close} from 'react-icons-kit/md/ic_close'
+import {ic_keyboard_arrow_right} from 'react-icons-kit/md/ic_keyboard_arrow_right';
+import {plus} from 'react-icons-kit/fa/plus'
 
 
 
@@ -23,28 +25,40 @@ const data = [
     FAQ: [
       {
         header: "Account",
-        contents: 'blah blah blah'
+        content: "1 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
-        header: "Member Center"
+        header: "Member Center",
+        content: "2 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
-        header: "Order"
+        header: "Order",
+        content: "3 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
       },
       {
         header: "Order Status",
+        content: "4 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
       },
       {
         header: "Payment",
+        content: "5 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
       },
       {
-        header: "Shipping"
+        header: "Shipping",
+        content: "6 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
       },
       {
-        header: "Return & Exchanges"
+        header: "Return & Exchanges",
+        content: "7 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
       },
       {
-        header: "Refunds"
+        header: "Refunds",
+        content: "8 policdy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
       }
     ],
     "Show Schedule": [
@@ -105,8 +119,8 @@ export default class VendorInfo extends Component {
     this.state = { 
       selected: [],
       header: '',
-      faqContents: [],
-      child: [],
+      subheader: [],
+      subHeaderContent: '',
       default: {
         name: "",
         description_1: "",
@@ -114,8 +128,31 @@ export default class VendorInfo extends Component {
         phone: '',
         email: '',
         description_2: '',
+      },
+      showSubheader: {
+        display: "",
+      },
+      animate: {
+        height: 0,
+        top: 0,
+      },
+      isActive: {
+        on: false
       }
     }
+  }
+  componentWillMount() {
+    let infos = data[0]['company info'];
+    this.setState({
+      default: {
+        name: infos.name,
+        description_1: infos.description_1,
+        address: infos.address,
+        phone: infos.description_2,
+        email: infos.email,
+        description_2: infos.description_2
+      }
+    })
   }
   pushVendorInfo(info, infos) {
     for (let key in infos) {
@@ -123,66 +160,61 @@ export default class VendorInfo extends Component {
         this.setState({
           selected: infos[key],
           header: info,
-          default: {
-            name: infos[key].name,
-            description_1: infos[key].description_1,
-            address: infos[key].address,
-            phone: infos[key].description_2,
-            email: infos[key].email,
-            description_2: infos[key].description_2
-          }
+          showSubheader: { display: 'none' },
+          isActive: { on: !this.state.isActive.on }
+        }, console.log(info))
+      }
+      if (key === "FAQ" && info === "FAQ") {
+        this.setState({
+          subheader: infos[key],
+          showSubheader: { display: "flex" },
         })
-      }
-      if (key === "FAQ") {
-        this.setState({faqContents: infos[key]})
-        // return this.renderImmediateChild(key);
-      }
-      if (key === "company info") {
-        console.log(infos[key], 'default')
-        // this.setState({default: {
-        //   name: i
-        // }})
       }
     }
   }
+  pushSubHeaderContent(content, header) {
+    this.setState({
+      subHeaderContent: header.content
+    })
+  }
   renderVendorInfoNav(vendorInfo){   
     return vendorInfo.map(infos => {    
-      return Object.keys(infos).map(info => {
-        // console.log(infos.FAQ)
+      return Object.keys(infos).map((info, i) => {
         return (
-          <ul className="infoCategories" onClick={() => this.pushVendorInfo(info, infos)}>
-            {info}
-            
-          </ul>
+          <div className="sidePanel__container">
+            <ul className={ 'sidePanel__header sidePanel__header' + (this.state.header === info ? "--active" : '')} onClick={() => this.pushVendorInfo(info, infos)} key={i}>
+              {info}
+                {
+                  this.state.subheader.map((subHeaders, j) => {
+                    return <li style={info ==="FAQ" ? this.state.showSubheader : {display: 'none'}} className="sidePanel__subheader_item" 
+                    onMouseEnter={() => this.pushSubHeaderContent(subHeaders.header, subHeaders)}
+                    key={j}
+                    >{subHeaders.header}</li>
+                  })
+                }
+            </ul>
+            <Icon icon={ic_keyboard_arrow_right} size={24} className="arrow__right"/>
+          </div>
         )
       })
     }) 
   }
-  renderImmediateChild(faq) {
-    console.log(faq, 'fag')
-    return faq.map(subHeaders => {
-      return <li>{subHeaders.header}</li>
-    })
-  }
-  // renderSideNav() {
 
-  // }
   render() {
     return(
-      <div id="vendorInfo" ref="referree">
-        <div className="sideNav">
+      <div id="tabInfo__container">
+        <div className="tabInfo__sidePanel">
           {this.renderVendorInfoNav(data)}
-          {/* {this.renderImmediateChild(this.state.faqContents)} */}
         </div>
-        <div className="sideNavContents">
-          <div className="sideNavContainer">
-            <h3 className="sideNavHeader">{this.state.header }</h3>
+        <div className="tabInfo__content__container">
+          <div className="tabInfo__content__container-format">
+            <h3 className="tabInfo__content-header">{this.state.header || "Company Info"}</h3>
             <button>
               <Icon icon={ic_close} size={16}/>
             </button>
           </div>
           <SideNavContents contents={this.state  || this.state.default}/>
-          <button className="sideNavClose">Close</button>
+          <button className="tabInfo__btn-close">Close</button>
         </div>
       </div>
     )
