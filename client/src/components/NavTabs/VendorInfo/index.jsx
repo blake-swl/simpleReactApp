@@ -162,38 +162,45 @@ export default class VendorInfo extends Component {
           header: info,
           showSubheader: { display: 'none' },
           isActive: { on: !this.state.isActive.on }
-        }, console.log(info))
+        })
       }
       if (key === "FAQ" && info === "FAQ") {
         this.setState({
           subheader: infos[key],
-          showSubheader: { display: "flex" },
+          showSubheader: { display: "flex" }, 
         })
       }
     }
   }
-  pushSubHeaderContent(content, header) {
+  pushSubHeaderContent(header) {
     this.setState({
-      subHeaderContent: header.content
+      subHeaderContent: header
     })
+  }
+  closePopup(event) {
+    console.log('clicked')
   }
   renderVendorInfoNav(vendorInfo){   
     return vendorInfo.map(infos => {    
       return Object.keys(infos).map((info, i) => {
         return (
-          <div className="sidePanel__container">
-            <ul className={ 'sidePanel__header sidePanel__header' + (this.state.header === info ? "--active" : '')} onClick={() => this.pushVendorInfo(info, infos)} key={i}>
+          <div className={ 'sidePanel__container sidePanel__container' + (this.state.header === info ? "--active" : '')}>
+            <ul onClick={() => this.pushVendorInfo(info, infos)} key={i}>
               {info}
                 {
                   this.state.subheader.map((subHeaders, j) => {
-                    return <li style={info ==="FAQ" ? this.state.showSubheader : {display: 'none'}} className="sidePanel__subheader_item" 
-                    onMouseEnter={() => this.pushSubHeaderContent(subHeaders.header, subHeaders)}
+                    return <li style={info ==="FAQ" ? this.state.showSubheader : {display: 'none'}}  
+                    className={ 'sidePanel__subheader_item sidePanel__subheader_item' + (this.state.subHeaderContent.header === subHeaders.header ? "--active" : '')}
+                    onMouseEnter={() => this.pushSubHeaderContent(subHeaders)}
                     key={j}
-                    >{subHeaders.header}</li>
+                    >
+                    {subHeaders.header}</li>
                   })
                 }
             </ul>
-            <Icon icon={ic_keyboard_arrow_right} size={24} className="arrow__right"/>
+            <div style={{width: 'fit-content', alignSelf: 'baseline'}}>
+              <Icon icon={ic_keyboard_arrow_right} size={24} className="arrow__right"/>
+            </div>
           </div>
         )
       })
@@ -208,13 +215,13 @@ export default class VendorInfo extends Component {
         </div>
         <div className="tabInfo__content__container">
           <div className="tabInfo__content__container-format">
-            <h3 className="tabInfo__content-header">{this.state.header || "Company Info"}</h3>
-            <button>
+            <h3 className="tabInfo__content-header">{(this.state.header === "FAQ") ? this.state.subHeaderContent.header : this.state.header || "Company Info"}</h3>
+            <button className="tabInfo__btn-x">
               <Icon icon={ic_close} size={16}/>
             </button>
           </div>
           <SideNavContents contents={this.state  || this.state.default}/>
-          <button className="tabInfo__btn-close">Close</button>
+          <button className="tabInfo__btn-close" onClick={(e) => this.closePopup(e)}>Close</button>
         </div>
       </div>
     )

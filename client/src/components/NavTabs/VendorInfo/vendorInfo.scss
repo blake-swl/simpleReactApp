@@ -9,8 +9,8 @@
   }
 }
 .tabInfo__sidePanel {
-  width: fit-content;
   // width: fit-content;
+  width: 30%;
 
 }
 .sidePanel__container {
@@ -20,7 +20,11 @@
   justify-content: space-between;
   align-items: center;
   width: calc(100% - 2em);
-  color: $fontGrey;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: 600;
+  color: $black;
+  cursor: pointer;
 
   .arrow__right {
     visibility: hidden;
@@ -30,43 +34,32 @@
     color: $blue;
     .arrow__right {
       visibility: visible;
-      display: flex;
-      align-self: baseline;
     }
   }
 }
-
-.sidePanel__header {
-  text-transform: capitalize;
-  font-size: 12px;
-  font-weight: 600;
-  color: $black;
-  line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-  transition: .2s ease-in all;
-
-  &:hover {
-    color: $blue;
-  }
-}
-.sidePanel__header--active {
+.sidePanel__container--active {
   color: $blue;
+  
+  .arrow__right {
+    visibility: visible;
+  }
 }
 
 .sidePanel__subheader_item {
   color: $fontGrey;
   padding-left: 1em;
   font-weight: normal;
+  line-height: 2;
+  width: calc(100% - 1em);
+  cursor: pointer;
   
   &:before {
     content: '+';
     margin: 0 5px;
   }
-  
-  &:hover {
-    color: $blue;
-  }
+}
+.sidePanel__subheader_item--active {
+  text-decoration: underline;
 }
 .tabInfo__content__container {
   padding: 0 1em;
@@ -81,6 +74,7 @@
 }
 .tabInfo__content__subContainer {
   overflow-y: scroll;
+  min-height: 200px;
 }
 .tabInfo__content-header {
   font-size: 12px;
@@ -91,6 +85,17 @@
 .tabInfo__btn-close {
   margin: 2em 1em 1em;
   float: right;
+  border-radius: 0;
+  background: $grey;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 16px;
+}
+.tabInfo__btn-x {
+  border: none;
+  &:hover {
+    color: $blue;
+  }
 }
 
 // SideNav Components

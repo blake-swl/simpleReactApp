@@ -10,7 +10,7 @@ class SideNavContents extends Component {
       return this.companyInfo(contents.selected || contents.default)
     }
     else if (contents.header === 'FAQ') {
-      return this.faq(contents)
+      return this.faq(contents.subHeaderContent)
     }
     else if (contents.header === 'Show Schedule') {
       return this.schedule(contents.selected);
@@ -47,7 +47,7 @@ class SideNavContents extends Component {
   faq(info) {
     return (
       <div className="content__container">
-        <p className="content__description">{info.subHeaderContent}</p>
+        <p className="content__description">{info.content}</p>
       </div>
     )
   }
