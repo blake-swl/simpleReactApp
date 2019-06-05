@@ -136,9 +136,6 @@ export default class VendorInfo extends Component {
         height: 0,
         top: 0,
       },
-      isActive: {
-        on: false
-      }
     }
   }
   componentWillMount() {
@@ -161,7 +158,6 @@ export default class VendorInfo extends Component {
           selected: infos[key],
           header: info,
           showSubheader: { display: 'none' },
-          isActive: { on: !this.state.isActive.on }
         })
       }
       if (key === "FAQ" && info === "FAQ") {

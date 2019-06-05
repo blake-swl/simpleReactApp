@@ -1,11 +1,11 @@
 @import '../../../../global/global.scss';
 
-.tabCategory {
+.tabCategory__container {
   display: flex;
   flex-direction: row !important;
   width: 100%;
 }
-.tabToggles {
+.tabCategory__content__items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -27,7 +27,7 @@
   text-transform: capitalize;
   white-space: nowrap;
 }
-.checkbox__container.double {
+.checkbox__container--double {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -44,16 +44,13 @@
     width: auto;
   }
 }
-.tabNavCategory {
+.tabCategory__sidePanel__container {
   width: 30%;
 }
-.tabNavContents {
+.tabCategory__content__container {
   padding: 0 1em;
   width: 70%;
   border-left: 2px solid $grey;
-}
-.tabNavClose {
-  float: right;
 }
 .checkbox__type {
   line-height: 2;

@@ -2,16 +2,9 @@
 
 #tabInfo__container {
   display: flex;
-  // padding: 1em;
-
-  * {
-    // outline: 1px solid red;
-  }
 }
 .tabInfo__sidePanel {
-  // width: fit-content;
   width: 30%;
-
 }
 .sidePanel__container {
   white-space: nowrap;
@@ -93,6 +86,7 @@
 }
 .tabInfo__btn-x {
   border: none;
+  float: right;
   &:hover {
     color: $blue;
   }
@@ -104,15 +98,17 @@
   font-size: 12px;
   color: $fontGrey;
   line-height: 1.2;
+
+  &-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: fit-content;
+    grid-gap: .5em;
+  }
 }
-.content__container-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: fit-content;
-  grid-gap: .5em;
-}
+
 .content__header {
   color: $blue;
   padding: 1em 0;

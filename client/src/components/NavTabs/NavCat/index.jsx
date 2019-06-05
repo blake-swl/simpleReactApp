@@ -30,35 +30,64 @@ export default class NavCat extends Component {
 
     // this.state = { checked: false }
     this.state = {
-      checkboxes: []
+      checkboxes: [],
+      isChecked: false,
     }
     this.formatCircle = this.formatCircle.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this._submit = this._submit.bind(this);
   }
-  handleCheckboxChange(changeEvent) {
-    console.log('checked', )
-    // const { name } = changeEvent.target;
-  
-    // this.setState(prevState => ({
-    //   checkboxes: {
-    //     ...prevState.checkboxes,
-    //     [name]: !prevState.checkboxes[name]
-    //   }
-    // }));
-  };
+
+  // handleCheckboxChange(label) {
+  //   let labelBox = {}, array = [];
+  //   labelBox[label] = this.state.isChecked;
+  //   array.push(labelBox);
+  //   this.setState((prevState, props) => ({
+  //     isChecked: !this.state.isChecked,
+  //     checkboxes: [labelBox]
+  //   }), console.log(this.state.checkboxes))  
+  // };
+  // handleCheckboxChange(e, label = e.target.name, checked = e.target.checked, checkbox = {}, array = [], labels) {
+    handleCheckboxChange(e, label, labels, checked = e.target.checked) {
+      // labels.forEach(label )
+    console.log(labels,)
+   let checkbox = {}, array = [];
+   checkbox[label] = checked;
+   array.push(checkbox);
+   console.log(array)
+    // if (checked) {
+    //   this.setState({
+    //     checkboxes: [labels]
+    //   }, () => console.log(this.state.checkboxes))
+    //   // array.push(label)
+    // }
+    // console.log(array)
+    // checkbox[label] = checked;
+    // array.push(checkbox);
+    // this.setState({ checkboxes: array }, () => console.log(this.state.checkboxes))
+  }
+  _submit(formSubmitEvent) {
+    console.log('submitted', this.state.checkboxes)
+    formSubmitEvent.preventDefault();
+
+    // Object.keys(this.state.checkboxes)
+    //   .filter(checkbox => this.state.checkboxes[checkbox])
+    //   .forEach(checkbox => {
+    //     console.log(checkbox, "is selected.");
+    //   });
+  }
+
   formatCheckbox(header, labels) {
-    // console.log(this.reduceCheckbox(labels))
-    console.log(labels.length > 8)
     return (
       <div>
         <h1 className="checkbox__header">{header}</h1>
-        <div className={'checkbox__container ' + (labels.length > 8 ? 'double' : 'single')}>
+        <div className={'checkbox__container' + (labels.length > 8 ? '--double' : '')}>
           {
             labels.map(label => {
-              {/* console.log(this.state.checkboxes[label]) */}
               return (
-                <div className="toggle_checkboxes">
-                  <label htmlFor="" className="checkbox__item">  
-                    <input type="checkbox" checked={this.state.checkboxes[label]} onClick={this.handleCheckboxChange} className="check_box"/>
+                <div className="checkbox__format">
+                  <label className="checkbox__item">  
+                    <input type="checkbox" checked={this.state.checkboxes[label]} name={label} onClick={(e) => this.handleCheckboxChange(e, label, labels)} className="checkbox__input"/>
                     <span> {label}</span>
                   </label>
                 </div>
@@ -81,15 +110,15 @@ export default class NavCat extends Component {
   }
   render() {
     return(
-      <div className="tabCategory">
-        <div className="tabNavCategory">
+      <div className="tabCategory__container">
+        <div className="tabCategory__sidePanel__container">
           <NavCategory />
         </div>
-        <div className="tabNavContents">
-          <button className="tabNavClose">
+        <form className="tabCategory__content__container" onSubmit={this._submit}>
+          <button className="tabInfo__btn-x">
             <Icon icon={ic_close} size={16}/>
           </button>
-          <div className="tabToggles">
+          <div className="tabCategory__content__items">
             {this.formatCheckbox('style', ['active (500)', 'fashion (500)', 'streetwear (500)', 'casual (500)', 'formal (500)'])}
             {this.formatCheckbox('Size', ['One Size', 'Xs','S', 'M','L', 'Xl','2xl','3xl', '4xl', '5xl'])}
             <div>
@@ -106,12 +135,13 @@ export default class NavCat extends Component {
             {this.formatCheckbox('Clothing Length', ['Short (500)', 'Regular (500)', 'Long (500)', 'X-long (500)'])}
             {this.formatCheckbox('Body Type', ['Junior', 'Young Contemporary', 'Missy', 'Plus Size', 'Maternity'])}
             <div>
-              <h1 className="toggle_header">Color</h1>
+              <h1 className="checkbox__header">Color</h1>
               {this.formatCircle()}
             </div>
           </div>
-          <button className="tabNavClose">Close</button>
-        </div>
+          <button className="tabInfo__btn-close">Close</button>
+          <button className="tabInfo__btn-close" type="submit">Submit</button>
+        </form>
       </div>
     )
   }
