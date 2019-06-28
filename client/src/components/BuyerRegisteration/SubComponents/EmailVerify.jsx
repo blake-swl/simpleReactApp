@@ -1,17 +1,17 @@
 import React from 'react';
-import './verification.scss';
+// import './verification.scss';
 
 import ReactCodeInput from 'react-verification-code-input';
 
 const EmailVerify = () => (
-  <div className="verification_container">
-    <div className="buyerRegistration_subtitle">
+  <div>
+    <div className="registration__subtitle">
       <span>
         <h1>Create Account</h1>
         <h1>Email Verify</h1>
       </span>
     </div>
-    <div className="row buyerRegistration_inputField">
+    <div className="registration__container--verification">
       <h1 className="serviceAgreement_header">Verify your email to complete registration</h1>
       <p>Please enter the 5 digit from the email that we sent to <span><a href="">hanthss@gmail.com</a></span></p>
       <p>Didn't recieve a code?<span><a href=""> Resend Code</a></span></p>
@@ -21,7 +21,7 @@ const EmailVerify = () => (
         <p>please call 213-745-2667 for customer service assistance.</p>
       </div>
     </div>
-    <div className="row buyerRegistration_btn_container buyerRegistration_subtitle">
+    <div className="registration__container--btn">
       <button className="serviceAgreement_btn btn">Verify</button>
     </div>
   </div>
