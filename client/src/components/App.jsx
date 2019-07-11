@@ -33,21 +33,16 @@ class App extends Component {
         <CompanyHeader/>
         <Navigation/>
         {/* <NavTabs /> */}
-        <BuyerRegisteration/>
+        {/* <BuyerRegisteration/> */}
         {/* <CategoryMain /> */}
         {/* <ItemDetails /> */}
-        {/* <Switch>
+        <Switch>
           {routes.map(route => (
             <Route key={`route-${route.name}`} {...route} />
           ))}
-        </Switch> */}
+        </Switch>
       </div>
-      // <div>
-      //   {/* <CompanyFooter/>
-      //   <IndividualVendorAllItems/>
-      //   <Landing/> */}
-      //   {/* <Favorites/> */}
-      // </div>
+    
     );
   }
 }

@@ -13,7 +13,7 @@ class BuyerRegistration extends Component {
     super(props);
 
     this.state = { 
-      view: 'createAccount',
+      view: 'personalInfo',
       check1: false,
       check2: false,
       check3: false,

@@ -34,7 +34,9 @@ export default class Address extends Component {
         },
         city: {
           value: '',
-
+        },
+        state: {
+          value: '',
         }
       }
     };
@@ -91,7 +93,7 @@ export default class Address extends Component {
         <div>
           <div className="registration__subtitle registration__subtitle--address">
             <h1>Company Address</h1>
-            <p><span className="asterisk">*</span> Required field</p>
+            <p style={{textAlign: 'end'}}><span className="asterisk">*</span> Required field</p>
             <CountryDropdown
               className="country__dropdown"
               value={country}
@@ -141,7 +143,13 @@ export default class Address extends Component {
               onChange={this.handleInput}
               required
               />
-
+              <TextInput name="state"
+              label="State"
+              value={formControls.state.value}
+              classNames="registration__input registration__input--city"
+              onChange={this.handleInput}
+              required
+              />
             </div>
             <div className="registration__container--btn">
               <button className="back btn" onClick={() => this.props.viewPost('personalInfo', false)}>&#60; Back</button>

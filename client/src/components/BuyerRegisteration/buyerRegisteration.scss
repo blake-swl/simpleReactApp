@@ -3,7 +3,8 @@
 // Registration Parent Component
 
 .registration__container {
-  // width: 90%;
+  width: 85%;
+  // max-width: 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,7 +124,8 @@
     grid-area: password;
   }
   &--phone {
-    grid-area: phone;
+    grid-area: phone !important;
+    width: 100% !important;
   }
   &--address {
     grid-area: address;
@@ -136,12 +138,34 @@
 .registration__checkbox {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  // margin: 1em 0;
+  // margin-top: 1em;
   padding: 1em 0;
   border-bottom: 1px solid #dfdfdf;
 }
 .checkbox__label {
   font-size: 14px;
+}
+.registration__container--select {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+.registration__content--select {
+  background: white;
+  font-size: 12px;
+  padding: .5em;
+  width: 45%;
+  text-align: center;
+  border: 2px solid $grey;
+  border-radius: 0;
+  -webkit-appearance: none;
+  background-position: right 50%;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"><path d="M4 8L0 4h8z"/></svg>');
+}
+.registration__content--input {
+  width: 45%;
+  border: 2px solid $grey;
 }
 .registration__container--verification {
   padding: 0 10%;
@@ -189,6 +213,7 @@
 
   &--verification {
     display: flex;
+    align-items: center;
   }
   p {
     font-size: 14px;
@@ -222,7 +247,28 @@
     }
   }
   .registration__subtitle__item {
-    // display: flex;
+    font-size: 16px;
+    width: fit-content;
+
+    &--black {
+      margin-right: 15px;
+    }
+    &--grey {
+      color: #cccccc;
+    }
+
+    &--bar {
+
+      &::before {
+        display: inline-block;
+        margin: 0 0px 3px 0;
+        height: 3px;
+        content: " ";
+        text-shadow: none;
+        background-color: #cccccc;
+        width: 50px;
+      }
+    }
   }
 }
 

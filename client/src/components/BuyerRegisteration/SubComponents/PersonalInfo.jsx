@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import ReactTelephoneInput from 'react-telephone-input';
+import ReactTelephoneInput from 'react-telephone-input/lib/withStyles';
 
+// import flags from '../../../../public/dist/flags.png'
 // SubComponents
 import validate from '../FormInputs/validation';
 import TextInput from '../FormInputs/textInput';
@@ -103,6 +104,7 @@ export default class PersonalInformation extends Component {
     e.preventDefault();
     this.setState(this.baseState)
   }
+  
   // _nextBtn(e) {
   //   e.preventDefault();
   //   console.dir(this.state.formControls);
@@ -170,4 +172,7 @@ export default class PersonalInformation extends Component {
     )
   }
 };
-// disabled={!this.state.formIsValid}
+// preferredCountries={[ 'us', 'gb', 'kr']}
+// flagsImagePath={flags}
+
+{/* disabled={!this.state.formIsValid} */}

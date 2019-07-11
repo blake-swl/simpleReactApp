@@ -8,7 +8,7 @@ class BusinessInformation extends Component {
   formatCheckbox(header, labels) {
     return (
       <div>
-        <h3>{header}</h3>
+        <h3 style={{marginTop: '1em'}}>{header}</h3>
         <div className="registration__checkbox">
           {
             labels.map(label => {
@@ -29,8 +29,9 @@ class BusinessInformation extends Component {
   render() {
     return(
       <div className="businessInformation_container">
-        <div className="registration__subtitle">
+        <div className="registration__subtitle registration__subtitle--address">
          <h1>Business Information</h1>
+         <p style={{textAlign: 'end'}}><span className="asterisk">*</span> Required field</p>
          <p>Tell us about your company</p>
         </div>
         <div className="registration__container--checkbox">
@@ -41,6 +42,13 @@ class BusinessInformation extends Component {
           {this.formatCheckbox('Speciality', ['Lingerie', 'Swimwear', 'Uniforms', 'Maternity'])}
           {this.formatCheckbox('Style', ['Casual', 'Formal', 'Contemporary', 'Junior', 'Missy'])}
           {this.formatCheckbox('Occasional', ['Vacation', 'Evening & Cocktail', 'Outdoor & Active', 'Prom & Homecoming', 'Night Out', 'Wedding', 'Lounge & Sleeping'])}
+          <div>
+            <h3 style={{marginTop: '1em'}}>How did you hear about us? <span className="asterisk">*</span></h3>
+            <div className="registration__container--select">
+              <select name="" id="" className="registration__content--select"><option value="Other">Choose one</option></select>
+              <input type="text" className="registration__content--input"/>
+            </div>
+          </div>
         </div>
         <div className="registration__container--btn">
           <button className="back btn" onClick={() => this.props.viewPost('address', false)}>&#60; Back</button>
